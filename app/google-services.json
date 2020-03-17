@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "998348409536",
+    "firebase_url": "https://pruebamultimedialab.firebaseio.com",
+    "project_id": "pruebamultimedialab",
+    "storage_bucket": "pruebamultimedialab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998348409536:android:e055320a12f9503c5cfb25",
+        "android_client_info": {
+          "package_name": "com.java90.pruebamultimedialab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998348409536-u48d0p40lujfa1ulqmesepcb29q8u73m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv1_TMsfwhyohxd-QMv4edejcpQXkDvrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998348409536-u48d0p40lujfa1ulqmesepcb29q8u73m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

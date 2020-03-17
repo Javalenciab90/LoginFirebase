@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PruebaMultimediaLab</string>
+    <string name="textRegister">REGISTRAR…</string>
+    <string name="textLogin">INICIAR SESIÓN</string>
+    <string name="textAlreadyRegister">Ya estas registrado?</string>
+    <string name="textForgotPass">Olvidó su contraseña?</string>
+    <string name="textEmail">E-mail</string>
+    <string name="textPass">Contraseña</string>
+    <string name="textConfirmPass">Confirmar contraseña</string>
+    <string name="textSignUp">Registrate</string>
+    <string name="textIn">ENTRAR</string>
+    <string name="textButtonRegister">REGISTRAR</string>
+    <string name="textButtonLogin">INICIAR SESIÓN</string>
+    <string name="textButtonReset">RESET</string>
+    <string name="textButtonBack">Volver</string>
+</resources>
