@@ -29,6 +29,13 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         textView_go_register.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
@@ -62,15 +69,15 @@ class LoginActivity : BaseActivity() {
                         showToast("Inicio de sesión exitoso")
                         hideProgressBar()
                         textView_forgot_pass.visibility = View.VISIBLE
-
                         val intent = Intent(this, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
+                        finish()
                     }
                     is Resource.Failure -> {
                         showToast("Contraseña o correo Incorrectas. \n" +
                                 "Verifique conexión Internet")
                         hideProgressBar()
+                        textView_forgot_pass.visibility = View.VISIBLE
                     }
                 }
             }
@@ -88,5 +95,11 @@ class LoginActivity : BaseActivity() {
             return false
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        finish()
     }
 }
