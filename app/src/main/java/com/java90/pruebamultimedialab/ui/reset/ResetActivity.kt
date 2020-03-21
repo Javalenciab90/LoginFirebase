@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -51,10 +52,11 @@ class ResetActivity : BaseActivity() {
                         showProgressBar()
                     }
                     is Resource.Success -> {
-                        showToast("Cambio de contraseña exitoso")
+                        showToast(result.data)
                         hideProgressBar()
                     }
                     is Resource.Failure -> {
+                        Log.d("TAG", result.exception.message.toString())
                         showToast("La Contraseña no se pudo cambiar.\n" +
                                 "Intente nuevamente.")
                         hideProgressBar()

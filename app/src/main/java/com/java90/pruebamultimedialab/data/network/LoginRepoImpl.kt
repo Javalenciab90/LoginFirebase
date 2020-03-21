@@ -5,21 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.java90.pruebamultimedialab.domain.LoginRepository
 import com.java90.pruebamultimedialab.vo.Resource
+import kotlinx.coroutines.tasks.await
 
 class LoginRepoImpl : LoginRepository {
 
-    override fun signInFirebase(email: String, password: String): LiveData<Resource<String>> {
-            val result = MutableLiveData<Resource<String>>()
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener{
-                    if(it.isSuccessful) {
-                        result.value =  Resource.Success("Inicio de sesión exitoso")
-                    }
-                }
-                .addOnFailureListener {
-                    result.value = Resource.Failure("Error: ${it.message}")
-                }
+    override suspend fun signInFirebase(email: String, password: String): Resource<String> {
 
-            return result
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).await()
+                return Resource.Success("Inicio de sesion Exitoso.")
         }
     }

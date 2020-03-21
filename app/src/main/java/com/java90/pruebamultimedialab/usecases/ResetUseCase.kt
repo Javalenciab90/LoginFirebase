@@ -6,7 +6,7 @@ import com.java90.pruebamultimedialab.vo.Resource
 
 class ResetUseCase(private val resetRepository: ResetRepository){
 
-    fun resetPassWord(email: String): LiveData<Resource<String>> {
+    suspend fun resetPassWord(email: String): Resource<String> {
         return resetRepository.resetPasswordFirebase(email)
     }
 }

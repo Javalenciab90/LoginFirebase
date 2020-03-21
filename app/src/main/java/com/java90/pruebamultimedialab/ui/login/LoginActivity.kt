@@ -74,8 +74,7 @@ class LoginActivity : BaseActivity() {
                         finish()
                     }
                     is Resource.Failure -> {
-                        showToast("Contraseña o correo Incorrectas. \n" +
-                                "Verifique conexión Internet")
+                        errorMessageFirebase(result.exception.message!!)
                         hideProgressBar()
                         textView_forgot_pass.visibility = View.VISIBLE
                     }
@@ -99,7 +98,6 @@ class LoginActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-
         finish()
     }
 }

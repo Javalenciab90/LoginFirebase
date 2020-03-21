@@ -5,5 +5,5 @@ import com.java90.pruebamultimedialab.vo.Resource
 
 interface LoginRepository {
 
-    fun signInFirebase(email: String, password: String) : LiveData<Resource<String>>
+   suspend fun signInFirebase(email: String, password: String) : Resource<String>
 }

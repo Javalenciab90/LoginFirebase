@@ -57,24 +57,21 @@ class RegisterActivity : BaseActivity() {
                     is Resource.Success -> {
                         hideProgressBar()
                         button_register.visibility = View.VISIBLE
-                        showToast("Registro exitoso. \n" +
-                                        "Proceda a iniciar sesión")
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     is Resource.Failure -> {
-                        showToast("Verifique conexión")
+                        errorMessageFirebase(result.exception.message!!)
                         button_register.visibility = View.VISIBLE
                         hideProgressBar()
                     }
                 }
             }
         )
-
     }
 
-
-        private fun validateForm(email: String, password: String, confirmPass: String) : Boolean{
+    private fun validateForm(email: String, password: String, confirmPass: String) : Boolean{
 
         if(TextUtils.isEmpty(email)) {
             showToast("Ingresar email válido!")
@@ -94,4 +91,10 @@ class RegisterActivity : BaseActivity() {
         }
         return true
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
 }

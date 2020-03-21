@@ -6,7 +6,7 @@ import com.java90.pruebamultimedialab.vo.Resource
 
 class LoginUseCase(private val loginRepository: LoginRepository){
 
-    fun signIn(email: String, password: String): LiveData<Resource<String>>{
+    suspend fun signIn(email: String, password: String): Resource<String> {
         return loginRepository.signInFirebase(email, password)
     }
 }
