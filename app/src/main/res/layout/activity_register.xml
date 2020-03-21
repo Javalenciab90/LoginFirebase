@@ -13,24 +13,23 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:alpha=".8"
         android:background="@drawable/shape_text_box"
         android:text="@string/textRegister"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/editText_email_login"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         android:alpha=".9"
         android:background="@drawable/shape_text_box"
@@ -121,8 +120,8 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginTop="24dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/textView_go_login"
         app:layout_constraintStart_toStartOf="@+id/textView_go_login"
         app:layout_constraintTop_toBottomOf="@+id/textView_go_login" />
