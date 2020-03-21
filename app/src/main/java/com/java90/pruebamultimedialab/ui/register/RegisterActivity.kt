@@ -51,19 +51,16 @@ class RegisterActivity : BaseActivity() {
             Observer { result ->
                 when(result) {
                     is Resource.Loading -> {
-                        button_register.visibility = View.GONE
                         showProgressBar()
                     }
                     is Resource.Success -> {
                         hideProgressBar()
-                        button_register.visibility = View.VISIBLE
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
                     is Resource.Failure -> {
                         errorMessageFirebase(result.exception.message!!)
-                        button_register.visibility = View.VISIBLE
                         hideProgressBar()
                     }
                 }

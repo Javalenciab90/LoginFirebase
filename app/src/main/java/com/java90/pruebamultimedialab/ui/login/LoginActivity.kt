@@ -62,13 +62,11 @@ class LoginActivity : BaseActivity() {
             Observer { result ->
                 when(result) {
                     is Resource.Loading -> {
-                        textView_forgot_pass.visibility = View.INVISIBLE
                         showProgressBar()
                     }
                     is Resource.Success -> {
                         showToast("Inicio de sesión exitoso")
                         hideProgressBar()
-                        textView_forgot_pass.visibility = View.VISIBLE
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -76,7 +74,6 @@ class LoginActivity : BaseActivity() {
                     is Resource.Failure -> {
                         errorMessageFirebase(result.exception.message!!)
                         hideProgressBar()
-                        textView_forgot_pass.visibility = View.VISIBLE
                     }
                 }
             }
