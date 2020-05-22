@@ -1,7 +1,12 @@
-package com.java90.pruebamultimedialab.vo
+package com.java90.pruebamultimedialab.utils
 
-sealed class Resource<out T> {
-    class Loading<out T> : Resource<T>()
-    data class Success<out T>(val data: T) : Resource<T>()
-    data class Failure<out T>(val exception: Exception) : Resource<T>()
+
+sealed class Resource<out T>(val data: T? = null,
+                              val message: String? = null
+) {
+    class Success<T>(data:T) : Resource<T>(data)
+    class Failure<T>(message: String, data: T? = null) : Resource<T>(data, message)
+    class Loading<T> : Resource<T>()
 }
+
+

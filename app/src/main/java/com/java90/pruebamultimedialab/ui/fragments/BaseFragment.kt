@@ -1,24 +1,21 @@
-package com.java90.pruebamultimedialab.ui
+package com.java90.pruebamultimedialab.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.java90.pruebamultimedialab.R
 
 abstract class BaseFragment : Fragment() {
 
     abstract fun getViewID(): Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                                  savedInstanceState: Bundle?): View? {
-            return inflater.inflate(getViewID(), container, false)
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(getViewID(), container,false)
     }
-    
+
     fun showToast(msg : String) {
         Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
     }
