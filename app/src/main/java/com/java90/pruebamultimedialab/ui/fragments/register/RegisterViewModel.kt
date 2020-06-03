@@ -14,7 +14,7 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewMode
             val response = registerUseCase.registerUser(email, password)
             emit(response)
         }catch (e:Exception) {
-            emit(Resource.Failure(e.message.toString()))
+            emit(Resource.Failure(e.message.toString(), e))
         }
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.java90.pruebamultimedialab.R
 import com.java90.pruebamultimedialab.data.network.RegisterRepoImp
 import com.java90.pruebamultimedialab.domain.usecases.RegisterUseCase
@@ -27,11 +28,14 @@ class RegisterFragment : BaseFragment() {
         viewModel = ViewModelProvider(this, RegisterViewModelFactory(viewModelFactory))
             .get(RegisterViewModel::class.java)
 
-
         btn_signUp.setOnClickListener {
             signUpUser(etEmailRegister.text.toString().trim(),
                        etPasswordRegister.text.toString().trim(),
                        etPassConfirmed.text.toString().trim())
+        }
+
+        tv_btn_goLogin.setOnClickListener {
+            view.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
 

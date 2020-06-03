@@ -1,4 +1,7 @@
 package com.java90.pruebamultimedialab.domain.usecases
 
-class ResetUseCase {
+import com.java90.pruebamultimedialab.domain.repositories.ResetPasswordRepository
+
+
+class ResetUseCase(private val resetPasswordRepository: ResetPasswordRepository) {
 }

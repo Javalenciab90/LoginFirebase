@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvUsername"
+    <EditText
+        android:id="@+id/etUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="UserName"
+        android:layout_marginEnd="16dp"
+        android:hint="UserName"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,24 +24,32 @@
         android:id="@+id/ivPhotoUser"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_image_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        android:background="@drawable/shape_image_box"/>
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="BIENVENIDO"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_selectPhoto"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_text_box"
+        android:text="SELECT PHOTO"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPhotoUser"
+        app:layout_constraintEnd_toEndOf="@+id/ivPhotoUser"
+        app:layout_constraintStart_toStartOf="@+id/ivPhotoUser"
+        app:layout_constraintTop_toTopOf="@+id/ivPhotoUser" />
+
+    <Button
+        android:id="@+id/btn_updateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="UPDATE"
+        app:layout_constraintEnd_toEndOf="@+id/etUsername"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

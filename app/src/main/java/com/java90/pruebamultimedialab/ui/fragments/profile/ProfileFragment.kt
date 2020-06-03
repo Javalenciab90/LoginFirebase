@@ -1,21 +1,102 @@
-package com.java90.pruebamultimedialab.ui.fragments.main
+package com.java90.pruebamultimedialab.ui.fragments.profile
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.storage.FirebaseStorage
 import com.java90.pruebamultimedialab.R
+import com.java90.pruebamultimedialab.data.network.ProfileUserRepoImp
+import com.java90.pruebamultimedialab.domain.usecases.ProfileUseCase
+import com.java90.pruebamultimedialab.ui.fragments.BaseFragment
+import com.java90.pruebamultimedialab.utils.Resource
+import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+class ProfileFragment : BaseFragment() {
+    override fun getViewID(): Int = R.layout.fragment_profile
+
+    companion object {
+        //image pick code
+        private val IMAGE_PICK_CODE = 0;
     }
+    private lateinit var viewModel: ProfileViewModel
+    private val currentUser = FirebaseAuth.getInstance().currentUser
+    private lateinit var imageUri: Uri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
+        val repository = ProfileUserRepoImp()
+        val viewModelFactory = ProfileUseCase(repository)
+        viewModel = ViewModelProvider(this, ProfileViewModelFactory(viewModelFactory))
+            .get(ProfileViewModel::class.java)
+
+        viewModel.initProfileUser().observe(viewLifecycleOwner,
+            Observer { response ->
+                when(response) {
+                    is Resource.Loading -> {
+                        showToast("Loading....")
+                    }
+                    is Resource.Success -> {
+                        Glide.with(this)
+                            .load(response.data)
+                            .into(ivPhotoUser)
+                    }
+                    is Resource.Failure -> {
+                        showToast(response.data.toString())
+                    }
+                }
+            }
+        )
+
+        btn_selectPhoto.setOnClickListener {
+            pickPhotoFromGallery()
+        }
+
+        btn_updateProfile.setOnClickListener {
+            viewModel.updateProfile(imageUri, etUsername.text.toString())
+                .observe(viewLifecycleOwner, Observer { response ->
+                        when(response) {
+                            is Resource.Loading -> {
+                                showToast("Loading....")
+                            }
+                            is Resource.Success -> {
+                                showToast(response.data.toString())
+                            }
+                            is Resource.Failure -> {
+                                errorMessageFirebase(response.data.toString())
+                            }
+                        }
+                    }
+                )
+        }
+    }
+
+    private fun pickPhotoFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            imageUri = data.data!!
+        }else {
+            showToast("Image not selected.")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -26,11 +107,11 @@ class ProfileFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_signOut -> {
-                Toast.makeText(activity, "Click Salir de la cuenta.", Toast.LENGTH_LONG).show()
+                viewModel.signOut()
+                view?.findNavController()?.navigate(R.id.action_profileFragment_to_loginFragment)
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

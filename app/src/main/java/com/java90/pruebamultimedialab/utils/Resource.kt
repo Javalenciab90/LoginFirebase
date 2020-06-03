@@ -8,5 +8,3 @@ sealed class Resource<out T>(val data: T? = null,
     class Failure<T>(message: String, data: T? = null) : Resource<T>(data, message)
     class Loading<T> : Resource<T>()
 }
-
-

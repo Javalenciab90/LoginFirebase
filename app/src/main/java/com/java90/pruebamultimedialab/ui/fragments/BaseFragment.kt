@@ -31,7 +31,7 @@ abstract class BaseFragment : Fragment() {
             "The password is invalid or the user does not have a password." -> {
                 showToast("La contraseña no corresponde. Vuelva a intentarlo.")
             }
-            else -> showToast("Error desconocido")
+            else -> showToast("Error desconocido. Verifique su conexión")
         }
     }
 }
