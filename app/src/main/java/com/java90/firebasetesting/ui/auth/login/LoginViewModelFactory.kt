@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.fragments.login
+package com.java90.pruebamultimedialab.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

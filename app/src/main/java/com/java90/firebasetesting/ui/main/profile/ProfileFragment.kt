@@ -1,23 +1,17 @@
-package com.java90.pruebamultimedialab.ui.fragments.profile
+package com.java90.pruebamultimedialab.ui.main.profile
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.storage.FirebaseStorage
 import com.java90.pruebamultimedialab.R
 import com.java90.pruebamultimedialab.data.network.ProfileUserRepoImp
 import com.java90.pruebamultimedialab.domain.usecases.ProfileUseCase
-import com.java90.pruebamultimedialab.ui.fragments.BaseFragment
+import com.java90.pruebamultimedialab.ui.main.BaseFragment
 import com.java90.pruebamultimedialab.utils.Resource
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -30,17 +24,19 @@ class ProfileFragment : BaseFragment() {
         private val IMAGE_PICK_CODE = 0;
     }
     private lateinit var viewModel: ProfileViewModel
-    private val currentUser = FirebaseAuth.getInstance().currentUser
     private lateinit var imageUri: Uri
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setHasOptionsMenu(true)
 
         val repository = ProfileUserRepoImp()
         val viewModelFactory = ProfileUseCase(repository)
         viewModel = ViewModelProvider(this, ProfileViewModelFactory(viewModelFactory))
             .get(ProfileViewModel::class.java)
+
 
         viewModel.initProfileUser().observe(viewLifecycleOwner,
             Observer { response ->
@@ -108,7 +104,6 @@ class ProfileFragment : BaseFragment() {
         when(item.itemId){
             R.id.menu_signOut -> {
                 viewModel.signOut()
-                view?.findNavController()?.navigate(R.id.action_profileFragment_to_loginFragment)
                 return true
             }
         }

@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.fragments.profile
+package com.java90.pruebamultimedialab.ui.main.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

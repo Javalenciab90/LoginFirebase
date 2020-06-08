@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.fragments
+package com.java90.pruebamultimedialab.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

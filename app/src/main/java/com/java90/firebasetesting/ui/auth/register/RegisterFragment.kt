@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.fragments.register
+package com.java90.pruebamultimedialab.ui.auth.register
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import com.java90.pruebamultimedialab.R
 import com.java90.pruebamultimedialab.data.network.RegisterRepoImp
 import com.java90.pruebamultimedialab.domain.usecases.RegisterUseCase
-import com.java90.pruebamultimedialab.ui.fragments.BaseFragment
+import com.java90.pruebamultimedialab.ui.main.BaseFragment
 import com.java90.pruebamultimedialab.utils.Resource
 import kotlinx.android.synthetic.main.fragment_register.*
 

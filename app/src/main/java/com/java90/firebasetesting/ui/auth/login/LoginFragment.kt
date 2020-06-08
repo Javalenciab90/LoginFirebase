@@ -1,18 +1,15 @@
-package com.java90.pruebamultimedialab.ui.fragments.login
+package com.java90.pruebamultimedialab.ui.auth.login
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.java90.pruebamultimedialab.R
 import com.java90.pruebamultimedialab.data.network.LoginRepoImp
 import com.java90.pruebamultimedialab.domain.usecases.LoginUseCase
-import com.java90.pruebamultimedialab.ui.fragments.BaseFragment
+import com.java90.pruebamultimedialab.ui.main.BaseFragment
 import com.java90.pruebamultimedialab.utils.Resource
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -35,21 +32,14 @@ class LoginFragment : BaseFragment() {
         }
 
         tv_btn_go_register.setOnClickListener {
-            it.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            view.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        tvForgotPass.setOnClickListener {
+            view.findNavController().navigate(R.id.action_loginFragment_to_resetFragment)
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        checkLoggingUser()
-    }
-
-    private fun checkLoggingUser() {
-        val auth = FirebaseAuth.getInstance()
-        if(auth.currentUser != null) {
-            view?.findNavController()?.navigate(R.id.action_loginFragment_to_profileFragment)
-        }
-    }
 
     private fun singInUser(email: String, password: String) {
         if(!validateForm(email, password)) return
@@ -65,7 +55,6 @@ class LoginFragment : BaseFragment() {
                         btn_signIn.visibility = View.VISIBLE
                         hideProgressBar()
                         showToast(result.data.toString())
-                        view?.findNavController()?.navigate(R.id.action_loginFragment_to_profileFragment)
                     }
                     is Resource.Failure -> {
                         btn_signIn.visibility = View.VISIBLE

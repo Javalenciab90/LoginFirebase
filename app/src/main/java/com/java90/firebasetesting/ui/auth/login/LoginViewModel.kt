@@ -1,15 +1,22 @@
-package com.java90.pruebamultimedialab.ui.fragments.login
+package com.java90.pruebamultimedialab.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.java90.pruebamultimedialab.domain.usecases.LoginUseCase
 import com.java90.pruebamultimedialab.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
 class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
+
+    val authenticationState = FirebaseUserLiveData()
+        .map { user ->
+            if (user != null) {
+                AuthenticationState.AUTHENTICATED
+            }else {
+                AuthenticationState.UNAUTHENTICATED
+            }
+        }
 
     fun loginUser(email: String, password: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
@@ -20,4 +27,6 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
             emit(Resource.Failure(e.message.toString()))
         }
     }
+
+
 }

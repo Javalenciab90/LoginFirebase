@@ -1,11 +1,9 @@
-package com.java90.pruebamultimedialab.ui.fragments.profile
+package com.java90.pruebamultimedialab.ui.main.profile
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
 import com.java90.pruebamultimedialab.domain.usecases.ProfileUseCase
 import com.java90.pruebamultimedialab.utils.Resource
 import kotlinx.coroutines.Dispatchers
