@@ -1,8 +1,7 @@
-package com.java90.pruebamultimedialab.ui.auth.login
+package com.java90.firebasetesting.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.java90.pruebamultimedialab.domain.usecases.LoginUseCase
 
 class LoginViewModelFactory(private val loginUseCase: LoginUseCase) : ViewModelProvider.Factory {
 

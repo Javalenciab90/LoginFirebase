@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.auth.register
+package com.java90.firebasetesting.ui.auth
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -7,11 +7,9 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.java90.pruebamultimedialab.R
-import com.java90.pruebamultimedialab.data.network.RegisterRepoImp
-import com.java90.pruebamultimedialab.domain.usecases.RegisterUseCase
-import com.java90.pruebamultimedialab.ui.main.BaseFragment
-import com.java90.pruebamultimedialab.utils.Resource
+import com.java90.firebasetesting.R
+import com.java90.firebasetesting.ui.BaseFragment
+import com.java90.firebasetesting.utils.Resource
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : BaseFragment() {

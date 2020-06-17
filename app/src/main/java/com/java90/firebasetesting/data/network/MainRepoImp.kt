@@ -1,11 +1,11 @@
-package com.java90.pruebamultimedialab.data.network
+package com.java90.firebasetesting.data.network
 
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
-import com.java90.pruebamultimedialab.domain.repositories.ProfileUserRepository
-import com.java90.pruebamultimedialab.utils.Resource
+import com.java90.firebasetesting.domain.repositories.ProfileUserRepository
+import com.java90.firebasetesting.utils.Resource
 import kotlinx.coroutines.tasks.await
 
 class ProfileUserRepoImp : ProfileUserRepository {

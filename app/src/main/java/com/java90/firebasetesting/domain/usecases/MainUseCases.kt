@@ -1,9 +1,9 @@
-package com.java90.pruebamultimedialab.domain.usecases
+package com.java90.firebasetesting.domain.usecases
 
 
 import android.net.Uri
-import com.java90.pruebamultimedialab.domain.repositories.ProfileUserRepository
-import com.java90.pruebamultimedialab.utils.Resource
+import com.java90.firebasetesting.domain.repositories.ProfileUserRepository
+import com.java90.firebasetesting.utils.Resource
 
 class ProfileUseCase(private val profileUserRepository: ProfileUserRepository) {
 

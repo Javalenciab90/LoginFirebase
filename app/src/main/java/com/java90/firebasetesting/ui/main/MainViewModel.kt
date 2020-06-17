@@ -1,14 +1,13 @@
-package com.java90.pruebamultimedialab.ui.main.profile
+package com.java90.firebasetesting.ui.main
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.java90.pruebamultimedialab.domain.usecases.ProfileUseCase
-import com.java90.pruebamultimedialab.utils.Resource
+import com.java90.firebasetesting.domain.usecases.ProfileUseCase
+import com.java90.firebasetesting.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class ProfileViewModel(private val profileUseCase: ProfileUseCase) : ViewModel() {
 

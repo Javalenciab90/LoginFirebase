@@ -1,18 +1,23 @@
-package com.java90.pruebamultimedialab.ui.main.profile
+package com.java90.firebasetesting.ui.main.profile
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-import com.java90.pruebamultimedialab.R
-import com.java90.pruebamultimedialab.data.network.ProfileUserRepoImp
-import com.java90.pruebamultimedialab.domain.usecases.ProfileUseCase
-import com.java90.pruebamultimedialab.ui.main.BaseFragment
-import com.java90.pruebamultimedialab.utils.Resource
+import com.java90.firebasetesting.R
+import com.java90.firebasetesting.data.network.ProfileUserRepoImp
+import com.java90.firebasetesting.domain.usecases.ProfileUseCase
+import com.java90.firebasetesting.ui.BaseFragment
+import com.java90.firebasetesting.ui.main.MainActivity
+import com.java90.firebasetesting.utils.Resource
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -26,7 +31,6 @@ class ProfileFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var imageUri: Uri
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,7 +40,6 @@ class ProfileFragment : BaseFragment() {
         val viewModelFactory = ProfileUseCase(repository)
         viewModel = ViewModelProvider(this, ProfileViewModelFactory(viewModelFactory))
             .get(ProfileViewModel::class.java)
-
 
         viewModel.initProfileUser().observe(viewLifecycleOwner,
             Observer { response ->
@@ -104,6 +107,8 @@ class ProfileFragment : BaseFragment() {
         when(item.itemId){
             R.id.menu_signOut -> {
                 viewModel.signOut()
+                view?.findNavController()?.navigate(R.id.navigate_to_loginFragment)
+                (activity as MainActivity).finish()
                 return true
             }
         }

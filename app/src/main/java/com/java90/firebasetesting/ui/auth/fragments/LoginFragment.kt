@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.auth.login
+package com.java90.firebasetesting.ui.auth
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -6,11 +6,10 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.java90.pruebamultimedialab.R
-import com.java90.pruebamultimedialab.data.network.LoginRepoImp
-import com.java90.pruebamultimedialab.domain.usecases.LoginUseCase
-import com.java90.pruebamultimedialab.ui.main.BaseFragment
-import com.java90.pruebamultimedialab.utils.Resource
+import com.google.firebase.auth.FirebaseAuth
+import com.java90.firebasetesting.R
+import com.java90.firebasetesting.ui.BaseFragment
+import com.java90.firebasetesting.utils.Resource
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment() {
@@ -18,14 +17,25 @@ class LoginFragment : BaseFragment() {
     private val viewModel by lazy {
         val repository = LoginRepoImp()
         val viewModelFactory = LoginUseCase(repository)
-        ViewModelProvider(this, LoginViewModelFactory(viewModelFactory))
+        ViewModelProvider(this,
+            AuthViewModelFactory(
+                viewModelFactory
+            )
+        )
             .get(LoginViewModel::class.java)
     }
+
+    private val currentUser = FirebaseAuth.getInstance().currentUser
 
     override fun getViewID(): Int = R.layout.fragment_login
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if(currentUser != null){
+            view.findNavController().navigate(R.id.navigate_to_catalogueFragment)
+            (activity as AuthenticationActivity).finish()
+        }
 
         btn_signIn.setOnClickListener {
             singInUser(etEmailLogin.text.toString().trim(), etPasswordLogin.text.toString().trim())
@@ -39,7 +49,6 @@ class LoginFragment : BaseFragment() {
             view.findNavController().navigate(R.id.action_loginFragment_to_resetFragment)
         }
     }
-
 
     private fun singInUser(email: String, password: String) {
         if(!validateForm(email, password)) return
@@ -55,6 +64,8 @@ class LoginFragment : BaseFragment() {
                         btn_signIn.visibility = View.VISIBLE
                         hideProgressBar()
                         showToast(result.data.toString())
+                        view?.findNavController()?.navigate(R.id.navigate_to_catalogueFragment)
+                        (activity as AuthenticationActivity).finish()
                     }
                     is Resource.Failure -> {
                         btn_signIn.visibility = View.VISIBLE

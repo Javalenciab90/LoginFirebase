@@ -1,7 +1,7 @@
-package com.java90.pruebamultimedialab.domain.repositories
+package com.java90.firebasetesting.domain.repositories
 
 import android.net.Uri
-import com.java90.pruebamultimedialab.utils.Resource
+import com.java90.firebasetesting.utils.Resource
 
 interface ProfileUserRepository {
 
