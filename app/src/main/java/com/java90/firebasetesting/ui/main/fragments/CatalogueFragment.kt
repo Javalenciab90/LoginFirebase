@@ -1,4 +1,4 @@
-package com.java90.firebasetesting.ui.main.catalogue
+package com.java90.firebasetesting.ui.main.fragments
 
 
 import android.os.Bundle

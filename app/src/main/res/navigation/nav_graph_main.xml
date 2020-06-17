@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_main">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/catalogueFragment">
 
+    <fragment
+        android:id="@+id/catalogueFragment"
+        android:name="com.java90.firebasetesting.ui.main.fragments.CatalogueFragment"
+        android:label="CatalogueFragment" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.java90.firebasetesting.ui.main.fragments.FavoritesFragment"
+        android:label="FavoritesFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.java90.firebasetesting.ui.main.fragments.ProfileFragment"
+        android:label="ProfileFragment">
+    <action
+        android:id="@+id/navigate_to_loginFragment"
+        app:destination="@id/loginFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true" />
+    </fragment>
+
+    <activity
+        android:id="@+id/loginFragment"
+        android:name="com.java90.firebasetesting.ui.auth.AuthenticationActivity">
+    </activity>
 </navigation>

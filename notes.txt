@@ -1,0 +1,61 @@
+****** To know the state of User (authenticated or not) ***********
+
+-->> Use Conditional Navigation : 
+	https://developer.android.com/guide/navigation/navigation-conditional
+
+1. Create a class to hold the User state
+   with LiveData of Firebase
+
+  class FirebaseUserLiveData : LiveData<FirebaseUser>() {....}
+
+2. Create a Enum class to hold the states:
+	enum class AuthenticationState {
+    		AUTHENTICATED, UNAUTHENTICATED, INVALID_AUTHENTICATION
+	}
+	
+3. In LoginViewModel create LiveData to save the state of User
+
+val authenticationState = FirebaseUserLiveData()
+        .map { user ->
+            if (user != null) {
+                AuthenticationState.AUTHENTICATED
+            }else {
+                AuthenticationState.UNAUTHENTICATED
+            }
+        }
+
+4. In LoginFragment access the state with
+	
+   viewModel.authenticationState.observe(viewLifecycleOwner,
+	Observer{ state ->
+		when(state) {
+			AuthenticationState.AUTHENTICATED -> {
+                        // remove this destine (LoginFragment) from the stack
+			// so we go back to MainFragment (ProfileFragment).
+				navController.popBackStack()
+                    	}
+			....
+		}	
+    	}
+   )	
+
+5. 
+
+**** When use this funtion .map in LoginViewModel**** 
+
+ val authenticationState = FirebaseUserLiveData().map {...}
+
+IDE told me:
+"Cannot inline bytecode built with JVM target 1.8 into bytecode
+ that is being built with JVM target 1.X".
+
+Solution for this is just add to build.gradle(app)
+
+compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }

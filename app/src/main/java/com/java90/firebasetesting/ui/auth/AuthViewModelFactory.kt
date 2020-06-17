@@ -1,11 +1,12 @@
-package com.java90.firebasetesting.ui.auth.login
+package com.java90.firebasetesting.ui.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.java90.firebasetesting.domain.usecases.AuthUseCases
 
-class LoginViewModelFactory(private val loginUseCase: LoginUseCase) : ViewModelProvider.Factory {
+class AuthViewModelFactory(private val authUseCases: AuthUseCases) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LoginViewModel(loginUseCase) as T
+        return AuthViewModel(authUseCases) as T
     }
 }

@@ -1,4 +1,4 @@
-package com.java90.firebasetesting.ui.main.profile
+package com.java90.firebasetesting.ui.main.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -9,14 +9,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.java90.firebasetesting.R
-import com.java90.firebasetesting.data.network.ProfileUserRepoImp
-import com.java90.firebasetesting.domain.usecases.ProfileUseCase
 import com.java90.firebasetesting.ui.BaseFragment
 import com.java90.firebasetesting.ui.main.MainActivity
+import com.java90.firebasetesting.ui.main.MainViewModel
 import com.java90.firebasetesting.utils.Resource
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -24,22 +22,20 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 class ProfileFragment : BaseFragment() {
     override fun getViewID(): Int = R.layout.fragment_profile
 
+    private lateinit var viewModel: MainViewModel
+
     companion object {
         //image pick code
         private val IMAGE_PICK_CODE = 0;
     }
-    private lateinit var viewModel: ProfileViewModel
+
     private lateinit var imageUri: Uri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setHasOptionsMenu(true)
 
-        val repository = ProfileUserRepoImp()
-        val viewModelFactory = ProfileUseCase(repository)
-        viewModel = ViewModelProvider(this, ProfileViewModelFactory(viewModelFactory))
-            .get(ProfileViewModel::class.java)
+        viewModel = (activity as MainActivity).viewModel
 
         viewModel.initProfileUser().observe(viewLifecycleOwner,
             Observer { response ->
@@ -85,7 +81,9 @@ class ProfileFragment : BaseFragment() {
     private fun pickPhotoFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent,
+            IMAGE_PICK_CODE
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

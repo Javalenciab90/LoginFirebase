@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab
+package com.java90.firebasetesting
 
 import org.junit.Test
 

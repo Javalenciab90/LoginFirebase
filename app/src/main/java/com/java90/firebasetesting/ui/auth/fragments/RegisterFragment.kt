@@ -1,30 +1,28 @@
-package com.java90.firebasetesting.ui.auth
+package com.java90.firebasetesting.ui.auth.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.java90.firebasetesting.R
 import com.java90.firebasetesting.ui.BaseFragment
+import com.java90.firebasetesting.ui.auth.AuthViewModel
+import com.java90.firebasetesting.ui.auth.AuthenticationActivity
 import com.java90.firebasetesting.utils.Resource
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : BaseFragment() {
 
-    private lateinit var viewModel: RegisterViewModel
+    lateinit var viewModel: AuthViewModel
 
     override fun getViewID(): Int = R.layout.fragment_register
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repository = RegisterRepoImp()
-        val viewModelFactory = RegisterUseCase(repository)
-        viewModel = ViewModelProvider(this, RegisterViewModelFactory(viewModelFactory))
-            .get(RegisterViewModel::class.java)
+        viewModel = (activity as AuthenticationActivity).viewModel
 
         btn_signUp.setOnClickListener {
             signUpUser(etEmailRegister.text.toString().trim(),

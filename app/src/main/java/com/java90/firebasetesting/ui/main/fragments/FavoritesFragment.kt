@@ -1,4 +1,4 @@
-package com.java90.firebasetesting.ui.main.favorites
+package com.java90.firebasetesting.ui.main.fragments
 
 import android.os.Bundle
 import android.view.View

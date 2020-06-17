@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.utils
+package com.java90.firebasetesting.utils
 
 
 sealed class Resource<out T>(val data: T? = null,

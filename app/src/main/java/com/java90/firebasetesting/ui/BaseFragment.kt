@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab.ui.main
+package com.java90.firebasetesting.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.java90.pruebamultimedialab
+package com.java90.firebasetesting
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

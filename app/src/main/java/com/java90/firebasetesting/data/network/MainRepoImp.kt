@@ -4,11 +4,11 @@ import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
-import com.java90.firebasetesting.domain.repositories.ProfileUserRepository
+import com.java90.firebasetesting.domain.repositories.MainRepository
 import com.java90.firebasetesting.utils.Resource
 import kotlinx.coroutines.tasks.await
 
-class ProfileUserRepoImp : ProfileUserRepository {
+class MainRepoImp : MainRepository {
 
     private val auth = FirebaseAuth.getInstance()
     private val storeRef = FirebaseStorage.getInstance()

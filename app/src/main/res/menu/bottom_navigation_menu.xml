@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/catalogueFragment"
+        android:title="Catalogue"
+        android:icon="@drawable/ic_catalogue"/>
+
+    <item
+        android:id="@+id/breakNewsFragment"
+        android:title="Favorites"
+        android:icon="@drawable/ic_favorites"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile"/>
+
 </menu>
